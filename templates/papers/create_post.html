@@ -1,0 +1,27 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post</title>
+    <link rel = "stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1>
+        <a class='first_title' href="{% url 'index' %}">Paper Notes</a>
+    </h1>
+    <h2> Create new post </h2>
+    <div>
+        <form method='POST' action='create_post'>
+            {% csrf_token %}
+            <p>Post Name:</p>
+            <input type='text' name='post_name'/>
+            <p>Choose color:</p>
+            <input type="color" id="color_input" name="color_input" value="#ff0000"/><br><br>
+            <input type='submit' value='Create'/>
+        </form>
+    </div>
+</body>
+</html>

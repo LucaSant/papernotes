@@ -1,7 +1,35 @@
 {% load static%}
 
-<link rel = "stylesheet" href="{% static 'style.css' %}">
-
-<h1>
-    <a class='first_title' href="{% url 'index' %}">Paper Notes</a>
-</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel = "stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1>
+        <a class='first_title' href="{% url 'index' %}">Paper Notes</a>
+    </h1>
+    <div class="post-its-container">
+        {% for post in posts %}
+            <a class="post-it" href = "{% url 'post_details' post.id %}" style="background-color:{{post.color}}">
+                <p class='post-title'>{{post.post_title}}</p>
+                <div class="post-it-content">
+                    <ul>
+                        {% for task in post.task_set.all %}
+                            <li>{{task.text}} - deadline: {{task.deadline}} | level: {{task.get_difficult_level_display}} | status: {{task.get_status_display}}</li>
+                        {%endfor%}  
+                    </ul>
+                </div>
+            </a>
+        {% endfor %}
+        <a href="{% url 'create_post' %}" class="add-button">   
+            <div >
+                <spam class="plus-symbol">+</spam>
+            </div>
+        </a>
+    </div>
+</body>
+</html>

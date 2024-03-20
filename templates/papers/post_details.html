@@ -1,0 +1,26 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <link rel = "stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1>
+        <a class='first_title' href="{% url 'index' %}">Paper Notes</a>
+    </h1>
+    <div>
+        <p class = 'details'>{{post.post_title}}</p>
+        <div class="post-it-content">
+            <ul>
+                {% for task in post.task_set.all %}
+                    <li>{{task.text}} - deadline: {{task.deadline}} | level: {{task.get_difficult_level_display}} | status: {{task.get_status_display}}</li>
+                {%endfor%}  
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
