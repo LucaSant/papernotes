@@ -1,0 +1,12 @@
+.first_title{
+    font-family: "Lucida Console", "Courier New", monospace;
+    text-align: center;
+    font: 10px;
+    color: rgb(16, 62, 100);
+}
+
+.first_title:hover{
+    color: rgb(85, 71, 12);
+    background-color: aquamarine;
+    
+}
